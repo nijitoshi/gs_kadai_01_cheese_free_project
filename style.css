@@ -1,0 +1,609 @@
+@charset "utf-8";
+
+/*========= 背景動画設定のCSS ===============*/
+
+/*header設定*/
+
+/* .body {
+  width: 1200px;
+  margin: auto;
+} */
+
+#header{
+  position: relative;/*ローディング画像などを表示す際の基点とするため指定*/
+    height: 100vh;/*高さを全画面にあわせる*/
+    text-align: center;
+    color: #fff;
+    /*ローディング画面時＆動画が表示されないときに表示する背景画像のレスポンシブ化*/
+    background: url("../img/movie.jpg") no-repeat;
+    background-size: cover;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* ローディングアイコン設定 */
+
+#loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+    font-weight: bold;
+}
+
+/*jQueryで付与されたdisappearクラスがついたらロゴエリアを非表示*/
+
+#loading.disappear{
+    display: none;   
+}
+
+
+/* youtube設定 */
+
+#youtube-area{
+    position: fixed;
+    z-index: 1;/*最背面に設定*/
+    top: 0;
+    right:0;
+    left:0;
+    bottom:0;
+    overflow: hidden;
+  opacity: 0;    
+}
+
+.header-heading {
+  font-size: 200px;
+  white-space: nowrap;
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: black;
+  font-family: 'Times New Roman', Times, serif;
+  padding-bottom: 250px;
+}
+
+.header-h2 {
+  position: relative;
+  text-align: center;
+  font-size: 80px;
+  white-space: nowrap;
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: black;
+  background: url("../img/movie.jpg") no-repeat;
+  z-index: 2;
+  vertical-align: baseline;
+  margin-top: 1050px;
+}
+
+/*jQueryで付与されたappearクラスがついたらYoutubeエリアをふわっと表示*/
+#youtube-area.appear {
+  animation-name:PageAnimeAppear;
+  animation-duration:.5s;
+  animation-fill-mode:forwards;
+}
+
+@keyframes PageAnimeAppear{
+  0% {
+  opacity: 0;
+  }
+  100% {
+  opacity: 1;
+}
+}
+
+#youtube {
+/*天地中央配置*/
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+/*縦横幅指定*/
+  width: 177.77777778vh; /* 16:9 の幅→16 ÷ 9＝ 177.77% */
+  height: 56.25vw; /* 16:9の幅 → 9 ÷ 16 = 56.25% */
+  min-height: 100%;
+  min-width: 100%;
+}
+
+/*youtubeがクリックされないためのマスク*/
+#youtube-mask{
+    position: absolute;
+    z-index: 2;/*下から2番目に表示*/
+    top:0;
+    width:100%;
+    height: 100%;
+}
+
+/*youtube 上のロゴ */
+.header-heading {
+  position:absolute;
+  z-index: 2;/*下から2番目に表示*/
+/*天地中央配置*/
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+/*色指定*/
+  color:#fff;
+  /* text-shadow: 0 0 15px #666; */
+  font-family: Arial, Helvetica, sans-serif
+}
+
+.scrolldown4{
+  /*描画位置※位置は適宜調整してください*/
+position:absolute;
+bottom: 40px;
+right:50%;
+z-index: 3;
+  /*矢印の動き1秒かけて永遠にループ*/
+animation: arrowmove 1s ease-in-out infinite;
+margin-bottom: 200px;
+}
+
+@keyframes arrowmove{
+  0%{bottom:1%;}
+  50%{bottom:3%;}
+  100%{bottom:1%;}
+}
+
+.scrolldown4 span{
+  /*描画位置*/
+position: absolute;
+left:-50px;
+bottom:30px;
+  /*テキストの形状*/
+color: #eee;
+font-weight: bold;
+font-size: 1.8rem;
+letter-spacing: 0.05em;
+/*縦書き設定*/
+-ms-writing-mode: tb-rl;
+-webkit-writing-mode: vertical-rl;
+writing-mode: vertical-rl;
+}
+
+.scrolldown4:before {
+  content: "";
+  /*描画位置*/
+  position: absolute;
+  bottom: 0;
+  right: -20px;
+  /*矢印の形状*/
+  width: 5px;
+  height: 60px;
+  background: #eee;
+  transform: skewX(-31deg);
+}
+
+.scrolldown4:after{
+	content:"";
+    /*描画位置*/
+	position: absolute;
+	bottom:0;
+	right:0;
+    /*矢印の形状*/
+	width:4px;
+	height: 150px;
+	background:#eee;
+}
+
+/*下のコンテンツ*/
+
+#Main{
+  position: relative;/*relativeを指定してfixed指定をした#youtube-areaの上に表示*/
+  z-index: 3;/*一番上に表示*/
+  /*見た目の調整*/
+  background:#333;
+  color: #fff;
+  padding:50px;
+  text-align: center;
+  height: 1200px;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+#Main h1 {
+  font-size: 90px;
+}
+
+.News-Cards {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.News-Card-1 img {
+  width: 450px;
+}
+
+.News-Card-2 img {
+  width: 450px;
+}
+
+.News-Card-3 img {
+  width: 450px;
+}
+
+.News-Card-Text-1 {
+  width: 450px;
+}
+
+.News-Card-Text-1-Heading {
+  margin-top: 30px;
+  font-size: 50px;
+  padding-bottom: 10px;
+  border-bottom: solid 1px #fff;
+}
+
+.News-Card-Text-1-Text {
+  margin-top: 24px;
+  line-height: 30px;
+  font-size: 28px;
+  text-align: left;
+  margin-top: -20px;
+}
+
+.News-Card-Text-2 {
+  width: 450px;
+}
+
+.News-Card-Text-2-Heading {
+  margin-top: 30px;
+  font-size: 50px;
+  padding-bottom: 10px;
+  border-bottom: solid 1px #fff;
+}
+
+.News-Card-Text-2-Text {
+  margin-top: 24px;
+  line-height: 30px;
+  font-size: 28px;
+  text-align: left;
+  margin-top: -20px;
+}
+
+.News-Card-Text-3 {
+  width: 450px;
+}
+
+.News-Card-Text-3-Heading {
+  margin-top: 30px;
+  font-size: 50px;
+  padding-bottom: 10px;
+  border-bottom: solid 1px #fff;
+}
+
+.News-Card-Text-3-Text {
+  margin-top: 24px;
+  line-height: 30px;
+  font-size: 28px;
+  text-align: left;
+  margin-top: -20px;
+}
+
+.News-Card-2 {
+  margin-left: 150px;
+  margin-right:150px;
+}
+
+#Main-Body{
+  position: relative;/*relativeを指定してfixed指定をした#youtube-areaの上に表示*/
+  z-index: 3;/*一番上に表示*/
+  /*見た目の調整*/
+  background:gray;
+  color: #fff;
+  padding:100px;
+  text-align: center;
+  height: 1000px;
+  margin-top: 50px;
+  margin-left: -100px;
+  margin-right: -100px;
+}
+
+.Body-Heading {
+  position: relative;
+  z-index: 3;
+}
+
+.slider-1 img {
+  width:100%;/*スライダー内の画像を横幅100%に*/
+  height:500px;
+}
+
+/*slickのJSで書かれるタグ内、スライド左右の余白調整*/
+
+.slider-1 .slick-slide {
+  margin:0 10px;/*スライド左右の余白調整*/
+}
+
+.slider-1 {
+  margin-top: 110px;
+}
+
+#Main-Body-2{
+  position: relative;/*relativeを指定してfixed指定をした#youtube-areaの上に表示*/
+  z-index: 3;/*一番上に表示*/
+  /*見た目の調整*/
+  background:#333;
+  color: #fff;
+  padding:100px;
+  text-align: center;
+  height: 1250px;
+  margin-top: 0px;
+  margin-left: -100px;
+  margin-right: -100px;
+}
+
+.Main-First-Button {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+.Main-First-Button-Text {
+  display: flex;
+  justify-content: center;
+  color: #fafafa;
+  font-size: 18px;
+  background-color: gray;
+  width: 400px;
+  height: 60px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  font-weight: bold;
+  border-radius: 25% 10%;
+}
+
+.Main-First-Button-Text-Text {
+  margin-top: 18px;
+}
+
+.Main-Body-Button {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+
+}
+.Main-Body-Button-Text {
+  display: flex;
+  justify-content: center;
+  color: #fafafa;
+  font-size: 18px;
+  background-color: #333;
+  width: 400px;
+  height: 60px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  font-weight: bold;
+  border-radius: 25% 10%;
+}
+
+.Main-Body-Button-Text-Text {
+  margin-top: 18px;
+}
+
+.Update-Text-0 {
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.Update-Cards {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.Update-Card-1 img {
+  width: 450px;
+  border-radius: 25% 10%;
+}
+
+.Update-Card-2 img {
+  width: 450px;
+  border-radius: 25% 10%;
+}
+
+.Update-Card-3 img {
+  width: 450px;
+  border-radius: 25% 10%;
+}
+
+.Update-Card-Text-1 {
+  width: 450px;
+  font-size: 24px;
+  text-align: left;
+}
+
+.Update-Card-Text-1-Date {
+  margin-top: 30px;
+}
+
+.Update-Card-Text-1-Text {
+  margin-top: 24px;
+  line-height: 30px;
+  text-wrap: wrap;
+}
+
+.Update-Card-Text-2 {
+  width: 450px;
+  font-size: 24px;
+  text-align: left;
+}
+
+.Update-Card-Text-2-Date {
+  margin-top: 30px;
+}
+
+.Update-Card-Text-2-Text {
+  margin-top: 24px;
+  line-height: 30px;
+  text-wrap: wrap;
+}
+
+.Update-Card-Text-3 {
+  width: 450px;
+  font-size: 24px;
+  text-align: left;
+}
+
+.Update-Card-Text-3-Date {
+  margin-top: 30px;
+}
+
+.Update-Card-Text-3-Text {
+  margin-top: 24px;
+  line-height: 30px;
+  text-wrap: wrap;
+}
+
+.Update-Card-2 {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.Update-Card-1 {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.Update-Card-1:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.Update-Card-2 {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.Update-Card-2:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.Update-Card-3 {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.Update-Card-3:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.nomad_share2 {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: flex;
+  justify-content: center;
+  width: 1200px;
+}
+.nomad_share2 a {
+  width: 20%;
+  margin: 0 1%;
+  border-radius: 5px;
+  padding: 5px;
+  transition: .2s;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  font-family: sans-serif;
+}
+.nomad_share2 .icon_1 {
+  background: #1DA1F2;
+}
+.nomad_share2 .icon_2 {
+  background: #1877F2;
+}
+.nomad_share2 .icon_3 {
+  background: #00A4DE;
+}
+.nomad_share2 .icon_4 {
+  background: #00B900;
+}
+.nomad_share2 .icon_5 {
+  background: #EF4056;
+}
+.nomad_share2 a:hover {
+  opacity: .9;
+}
+
+#Main-Body-3{
+  position: relative;/*relativeを指定してfixed指定をした#youtube-areaの上に表示*/
+  z-index: 3;/*一番上に表示*/
+  /*見た目の調整*/
+  background:gray;
+  color: #fff;
+  padding:100px;
+  text-align: center;
+  height: 500px;
+  margin-top: 0px;
+  margin-left: -100px;
+  margin-right: -100px;
+}
+
+.nomad_share2 {
+  /* display: block; */
+  margin: auto;
+  /* display: flex;
+  justify-content: center;
+} */}
+
+/* .nomad_share2 {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+} */
+
+.email {
+  margin-top: 100px;
+  font-size: 40px;
+}
+
+.email-td {
+  /* padding-top: -50px; */
+  width: 500px;
+  height: 40px;
+}
+
+.footer {
+  background-color: black;
+  margin-top: -30px;
+  margin-left: -50px;
+  width: 3800px ;
+  height: 78px;
+
+}
+
+.footer-text {
+  display: flex;
+  justify-content: center;
+  color: #fafafa;
+  padding-top: 40px;
+}
+
+#Main-Body-4{
+  position: relative;/*relativeを指定してfixed指定をした#youtube-areaの上に表示*/
+  z-index: 3;/*一番上に表示*/
+  /*見た目の調整*/
+  background:#333;
+  color: #fff;
+  padding:100px;
+  text-align: center;
+  height: 1350px;
+  margin-top: 0px;
+  margin-left: -100px;
+  margin-right: -100px;
+}
+
+#Main-Body-5{
+  position: relative;/*relativeを指定してfixed指定をした#youtube-areaの上に表示*/
+  z-index: 3;/*一番上に表示*/
+  /*見た目の調整*/
+  background:gray;
+  color: #fff;
+  padding:100px;
+  text-align: center;
+  height: 500px;
+  margin-top: 0px;
+  margin-left: -100px;
+  margin-right: -100px;
+}
